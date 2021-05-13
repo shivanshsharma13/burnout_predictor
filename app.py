@@ -32,7 +32,7 @@ class User(db.Model):
 class bout(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     emp_id = db.Column(db.String(25), nullable=False)
-    fat = db.Column(db.Integer, nullable=False)
+    Burn = db.Column(db.Float, nullable=False)
 
     def __repr__(self):
         return f"User('{self.emp_id}', {self.fat})"
@@ -80,19 +80,17 @@ def signup():
     Men = float(request.form['Mental fatigue'])
     # l.append(emp1)
 
+    details = user_details(emp1, Men)
+    burnout = model.predict(details)
+    
     if (check_user_db(emp1)):
         try:
-            entry = bout(emp_id=emp1, fat=Men)
+            entry = bout(emp_id=emp1, Burn=burnout)
             db.session.add(entry)
             db.session.commit()
-            return redirect("/")
-        except:
-            details = user_details(emp1, Men)
-
-            burnout = str(model.predict(details))
-            print(burnout)
-
-            return (f"Done successfull, your burnout rate is {burnout}")
+            return (f"Done successfull, your burnout rate is {burnout} and commited the changes")
+        except Exception as e:
+            return (f"Done successfull, your burnout rate is {burnout, e}")
     else:
         return "You are not a user, Please sign up"
 
@@ -129,7 +127,7 @@ def submit():
             # burnout = str(model.predict(df))
 
         else:
-            return "You are already registered in CSV file\n Please login!!"
+            return "You are already registered! Please login!!"
 
 
 # @app.route('/Mental', methods=['POST'])
