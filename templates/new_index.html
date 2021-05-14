@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}"> -->
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='new_index.css') }}">
+    <!-- <link rel="stylesheet" href="index.css"> -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
     <title>Burnout</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -57,21 +57,26 @@
                 </form> -->
 
 
-                <div class="form">
+                <form class="form" action="/login" method="POST">
                     <input type="text" id="emp" name="Employee Id" placeholder="Employee ID">
                     <input type="text" id="men" name="Mental fatigue" placeholder="Mental Fatigue">
-                    <button id="snot" class="frame" >Submit</button>
+                    <button id="snot" class="frame">Submit</button>
                     
-                </div>
+                </form>
+
+                {% if burn %}
                 <div class="container1">
                     <div id="toast">
                         <h2 id="close2">&times;</h2>
                         <div class="rate">
-                                <span>Burnout Rate: <span id="Bout"></span> </span>
-                        </div>
+              
+                                <span>Burnout Rate: <span id="Bout">{{burn}}</span> </span>
+               
+                            </div>
                     </div>
                 </div>
             </div>
+            {%endif%}
              <!-- pop ups -->
              
              
@@ -186,7 +191,7 @@
     console.log(clicked);
         $.ajax({
             type : 'POST',
-            url : "http://localhost:3000/login",
+            url : "http://localhost:5000/login",
             dataType: "json",
             data : clicked,
             contentType: "application/json",
