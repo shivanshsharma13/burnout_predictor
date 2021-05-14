@@ -88,9 +88,9 @@ def signup():
             entry = bout(emp_id=emp1, Burn=burnout)
             db.session.add(entry)
             db.session.commit()
-            return (f"Done successfull, your burnout rate is {burnout} and commited the changes")
+            return (f"Done successfully, your burnout rate is {burnout}, and commited the changes")
         except Exception as e:
-            return (f"Done successfull, your burnout rate is {burnout, e}")
+            return (f"Done successfully, your burnout rate is {burnout}, and Updated changes")
     else:
         return "You are not a user, Please sign up"
 
@@ -105,16 +105,27 @@ def submit():
         Com = int(request.form['Company type'])
         WFH = int(request.form['WFH'])
         Des = float(request.form['Designation'])
-        Res = int(request.form['Resorce Allocation'])
+        Res = float(request.form['Resorce Allocation'])
         # Men = float(request.form['Mental fatigue'])
         # if check_user(emp, date_emp, Gender, Com, WFH, Des, Res):
         #  return redirect("/login")
 
         if (not check_user_db(emp)):
-
+            if(Gender == 0):
+                G="Female"
+            else:
+                G="Male"
+            if Com == 0:
+                c = "Service"
+            else:
+                c = "Product"
+            if WFH == 0:
+                w = "Not WFH"
+            else:
+                w = "WFH"
             # try:
-            entry = User(emp_id=emp, date=date_emp, Gender=Gender, company=Com,
-                         WFH=WFH, Designation=Des, Resource_Allocation=Res)
+            entry = User(emp_id=emp, date=date_emp, Gender=G, company=c,
+                         WFH=w, Designation=Des, Resource_Allocation=Res)
             db.session.add(entry)
             db.session.commit()
 
