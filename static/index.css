@@ -178,7 +178,13 @@ body{
 }
 .custom_dialog{
     position: absolute;
+<<<<<<< HEAD
 
+=======
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+>>>>>>> 072f6b8a7edff9edc7f35daed51cba53f70e09e6
 
 }
 .custom_dialog input{
@@ -239,6 +245,19 @@ form{
     justify-content: center;
     align-items: center;
 }
+<<<<<<< HEAD
+=======
+.form{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+>>>>>>> 072f6b8a7edff9edc7f35daed51cba53f70e09e6
 /* dropboxxx */
 
 
@@ -359,6 +378,62 @@ label {
 	display: block;
 	cursor: pointer;
 }
+<<<<<<< HEAD
 
 
 
+=======
+/* pop css */
+
+.container1{
+    background: white;
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    border-radius: 10px;
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#toast h2{
+    margin: 0;
+    float: right;
+    margin-right: 10px;
+    top: 0;
+    right: 0;
+    position: absolute;
+    cursor: pointer;
+
+}
+#toast h2:hover {
+    color: rgb(113, 12, 121);
+}
+span{
+    color: #3da9fc;
+}
+img{
+    width: 100%;
+    height: auto;
+}
+.container1 button{
+    width: 70px;
+    height: 70px;
+    background-color: rgb(94, 17, 94);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 54px;
+    cursor: pointer;
+    box-shadow: 4px 11px 20px 4px rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+#rate{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    text-align: center;
+}
+>>>>>>> 072f6b8a7edff9edc7f35daed51cba53f70e09e6
