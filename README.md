@@ -1,4 +1,4 @@
-# Burnout Backend
+# Burnout predictor
 
 ## Clone the Project
 
