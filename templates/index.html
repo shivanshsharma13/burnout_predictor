@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
-<<<<<<< HEAD
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
     <title>Burnout</title>
-=======
+
     <!-- <link rel="stylesheet" href="/static/index.css"> -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
     <title>Burnout</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
->>>>>>> 072f6b8a7edff9edc7f35daed51cba53f70e09e6
+
 </head>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <body>
@@ -23,11 +23,11 @@
             <div class="nav">
                 <button id="boii">Entry</button>
                 <button id="boii2">New Entry</button>
-<<<<<<< HEAD
+
                 <button>Edit Old Entry</button>
-=======
+
                 <a href="/error"> <button >  Edit Old Entry</button></a>
->>>>>>> 072f6b8a7edff9edc7f35daed51cba53f70e09e6
+
             </div>
             <!-- <div class="nav viewevents">
                 <h3>View Events</h3>
@@ -55,11 +55,11 @@
             </div>
             <!-- just entry -->
             <div class="custom_dialog sec1 hidden">
-<<<<<<< HEAD
+
                 <h3 id="close">X</h3>
-=======
+
                 <h3 id="close">&times;</h3>
->>>>>>> 072f6b8a7edff9edc7f35daed51cba53f70e09e6
+
 
 
                 <!-- <form action="/somewhere" method="POST">
@@ -69,14 +69,14 @@
                 </form> -->
 
 
-<<<<<<< HEAD
+
                 <form action="/login" method="POST">
                     <input type="text" name="Employee Id" placeholder="Employee ID">
                     <input type="text" name="Mental fatigue" placeholder="Mental Fatigue">
                     <input type="submit" value=" Submit" class="frame">
                 </form>
 
-=======
+
                 <div class="form">
                     <input type="text" id="emp" name="Employee Id" placeholder="Employee ID">
                     <input type="text" id="men" name="Mental fatigue" placeholder="Mental Fatigue">
@@ -92,7 +92,7 @@
                             </div>
                     </div>
                 </div>
->>>>>>> 072f6b8a7edff9edc7f35daed51cba53f70e09e6
+
 
             </div>
             <!--new entry  -->
@@ -147,11 +147,11 @@
     var entry = document.querySelector('.sec1')
     var tsu = document.querySelector('.middle')
     var newEntry = document.querySelector('.sec2')
-<<<<<<< HEAD
-=======
+
+
     var emp = document.getElementById('emp')
     var men = document.getElementById('men')
->>>>>>> 072f6b8a7edff9edc7f35daed51cba53f70e09e6
+
     document.getElementById('boii').addEventListener('click',function(){
         entry.classList.add('dialog')
         entry.classList.remove('hidden')
@@ -188,8 +188,8 @@
         entry.classList.add('hidden')
 
     })
-<<<<<<< HEAD
-=======
+
+
     function send(){
                 var data = {
                     employee_id: emp.value,
@@ -229,7 +229,7 @@
         document.querySelector('.container1').style.display = 'none'
 
     }
->>>>>>> 072f6b8a7edff9edc7f35daed51cba53f70e09e6
+
 </script>
 
 </body>
