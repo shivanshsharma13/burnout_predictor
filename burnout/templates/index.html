@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <!-- <link rel="stylesheet" href="/static/index.css"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <title>Burnout</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<body>
+
+
+    <!-- Loader -->
+    <div class="loader">
+        <img src="{{ url_for('static', filename='itachi.jpg') }}" alt="">
+    </div>
+
+
+
+    <div class="container">
+        <div class="left">
+            <div class="logo"><a href="#">Burnout</a></div>
+            <div class="nav">
+                <button id="boii">Entry</button>
+                <button id="boii2">New Entry</button>
+                <a href="/error"> <button >  Edit Old Entry</button></a>
+            </div>
+            <!-- <div class="nav viewevents">
+                <h3>View Events</h3>
+                <button>Entry</button>
+                <button>New Entry</button>
+                <button>Edit Old Entry</button>
+            </div> -->
+        </div>
+        <div class="right">
+                    <div class="searchbar">
+                    <input type="search" placeholder="Search">
+
+                    </div>
+            <!-- <div class="top">
+                <div class="navbar">
+                    <a href="#">Find</a>
+                    <a href="#">Edit</a>
+                    <a href="#">Leave Data</a>
+                    <a href="#">Employee  Count</a>
+                    <button>Search With Logo</button>
+                </div>
+            </div> -->
+            <div class="middle  dialog">
+                You might have to login for this, <a style="color: #3da9fc;">Entry Here</a>
+            </div>
+            <!-- just entry -->
+            <div class="custom_dialog sec1 hidden">
+                <h3 id="close">&times;</h3>
+
+
+                <!-- <form action="/somewhere" method="POST">
+                    <input type="text" placeholder="Employee ID">
+                    <input type="text" placeholder="Mental Fatigue! Waant sex ?">
+                    <input type="submit" value="Submit" class="frame">
+                </form> -->
+
+
+                <div class="form">
+                    <input type="text" id="emp" name="Employee Id" placeholder="Employee ID">
+                    <input type="text" id="men" name="Mental fatigue" placeholder="Mental Fatigue">
+                    <input type="submit" value=" Submit" onclick="send()" class="frame">
+                </div>
+                <div class="container1">
+                    <div id="toast">
+                        <h2 onclick="close1()">&times;</h2>
+                        <div id="rate">
+              
+                                <span>Burnout Rate: <span id="Bout"></span> </span>
+               
+                            </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--new entry  -->
+    <div class="custom_dialog sec2 hidden">
+        <h3 id="close1">X</h3>
+        <form action="/submit" method="POST">
+            <input type="text" name="Employee Id" placeholder="Emplayee ID">
+            <input type="date" name="date" placeholder="Date of Joining">
+
+            <select name="Gender"class='sel_f'>
+                <option value=1>Male</option> 
+                <option value=0>Female</option>      
+            </select>
+
+            <select name="Company type"class='sel_f'>
+                <option value=0>Service</option> 
+                <option value=1>Product</option>      
+            </select>
+
+            <select name="WFH" class='sel_f'>
+                <option value=1>WFH</option> 
+                <option value=0>Not WFH</option>      
+            </select>  
+    
+
+            <input type="text" name="Designation" placeholder="Designation">
+            <input type="text" name="Resorce Allocation" placeholder="Resource Allocation">
+                    
+            <input type="submit" value="Submit" class="frame">
+        </form>
+        </div>
+        </div>
+    </div>
+
+<!--
+    
+    entry ::
+    1 - id
+    2- mental fatigue
+    new Entry::
+    1 - id
+    2 - dat of joining
+    3 - gender
+    4 - designation
+    5 - work from ome
+    6 - rsource alocation
+    7 - compony type
+ -->
+
+
+<script>
+    $(window).on("load",function(){
+        setTimeout(function(){
+            $(".loader").fadeOut("slow");
+            setTimeout(function(){ 
+            $('.container').fadeIn('slow').css('display', 'flex') }, 1000);
+        }, 3000)
+     
+    });
+
+
+    var entry = document.querySelector('.sec1')
+    var tsu = document.querySelector('.middle')
+    var newEntry = document.querySelector('.sec2')
+    var emp = document.getElementById('emp')
+    var men = document.getElementById('men')
+    document.getElementById('boii').addEventListener('click',function(){
+        entry.classList.add('dialog')
+        entry.classList.remove('hidden')
+        tsu.classList.remove('dialog')
+        tsu.classList.add('hidden')
+        newEntry.classList.remove('dialog')
+        newEntry.classList.add('hidden')
+
+    })
+    document.getElementById('close').addEventListener('click',function(){
+        entry.classList.remove('dialog')
+        entry.classList.add('hidden')
+        newEntry.classList.remove('dialog')
+        newEntry.classList.add('hidden')
+        tsu.classList.add('dialog')
+        tsu.classList.remove('hidden')
+        console.log('insertingggg')
+    })
+    document.getElementById('close1').addEventListener('click',function(){
+        entry.classList.remove('dialog')
+        entry.classList.add('hidden')
+        newEntry.classList.remove('dialog')
+        newEntry.classList.add('hidden')
+        tsu.classList.add('dialog')
+        tsu.classList.remove('hidden')
+        console.log('insertingggg')
+    })
+    document.getElementById('boii2').addEventListener('click',function(){
+        newEntry.classList.add('dialog')
+        newEntry.classList.remove('hidden')
+        tsu.classList.remove('dialog')
+        tsu.classList.add('hidden')
+        entry.classList.remove('dialog')
+        entry.classList.add('hidden')
+
+    })
+    function send(){
+                var data = {
+                    employee_id: emp.value,
+                    mental_fatigue: men.value
+                }
+        console.log(data);
+
+        $.ajax({ 
+                data: data,
+                type: 'POST',
+                url: 'https://burnoutcalculator.herokuapp.com/login',
+                dataType: 'text'
+            }).done(function(response){
+                var tr = [1,2,3,4,1,32,32]
+                if (response){
+                    response = response.slice(1, 11)
+                    if(parseFloat(response)){
+                        document.getElementById('Bout').innerHTML = parseFloat(response).toFixed(3)
+                        
+                    }
+                    else{
+                        document.getElementById('rate').innerHTML = 'Blessings have lifted! May you be in Despair'
+                        document.getElementById('rate').style.color = 'rgba(242, 22, 22, 1)'
+                        document.getElementById('rate').style.textAlign = 'center'
+                } 
+                }else console.error('something went wrong');
+                
+            }).done(function(){
+                document.querySelector('.form').style.display = 'none'
+                document.querySelector('.container1').style.display = 'flex'
+            })
+
+       
+    }
+    function close1(){
+        document.querySelector('.form').style.display = 'flex'
+        document.querySelector('.container1').style.display = 'none'
+
+    }
+</script>
+
+</body>
+</html> 

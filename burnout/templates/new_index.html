@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='new_index.css') }}">
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <title>Burnout</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<body>
+    <div class="container">
+        <div class="left">
+            <div class="logo"><a href="#">Burnout</a></div>
+            <div class="nav">
+                <button id="boii">Entry</button>
+                <button id="boii2">New Entry</button>
+                <button>Edit Old Entry</button>
+            </div>
+            <!-- <div class="nav viewevents">
+                <h3>View Events</h3>
+                <button>Entry</button>
+                <button>New Entry</button>
+                <button>Edit Old Entry</button>
+            </div> -->
+        </div>
+        <div class="right">
+                    <div class="searchbar">
+                    <input type="search" placeholder="Search">
+
+                    </div>
+            <!-- <div class="top">
+                <div class="navbar">
+                    <a href="#">Find</a>
+                    <a href="#">Edit</a>
+                    <a href="#">Leave Data</a>
+                    <a href="#">Employee  Count</a>
+                    <button>Search With Logo</button>
+                </div>
+            </div> -->
+            <div class="middle  dialog">
+                You might have to login for this, <a style="color: #3da9fc;">Entry Here</a>
+            </div>
+            <!-- just entry -->
+            <div class="custom_dialog sec1 hidden">
+                <h3 id="close">X</h3>
+
+
+                <!-- <form action="/somewhere" method="POST">
+                    <input type="text" placeholder="Employee ID">
+                    <input type="text" placeholder="Mental Fatigue! Waant sex ?">
+                    <input type="submit" value="Submit" class="frame">
+                </form> -->
+
+
+                <div class="form">
+                    <input type="text" id="emp" name="Employee Id" placeholder="Employee ID">
+                    <input type="text" id="men" name="Mental fatigue" placeholder="Mental Fatigue">
+                    <button id="snot" class="frame">Submit</button>
+                    
+                </div>
+
+                <div class="container1">
+                    <div id="toast">
+                        <h2 id="close2">&times;</h2>
+                        <div class="rate">
+              
+                                <span>Burnout Rate: <span id="Bout"></span> </span>
+               
+                            </div>
+                    </div>
+                </div>
+            </div>
+             <!-- pop ups -->
+             
+             
+            <!--new entry  -->
+    <div class="custom_dialog sec2 hidden">
+        <h3 id="close1">X</h3>
+        <form action="/submit" method="POST">
+            <input type="text" name="Employee Id" placeholder="Emplayee ID">
+            <input type="date" name="date" placeholder="Date of Joining">
+
+            <select name="Gender"class='sel_f'>
+                <option value=1>Male</option> 
+                <option value=0>Female</option>      
+            </select>
+
+            <select name="Company type"class='sel_f'>
+                <option value=0>Service</option> 
+                <option value=1>Product</option>      
+            </select>
+
+            <select name="WFH" class='sel_f'>
+                <option value=1>WFH</option> 
+                <option value=0>Not WFH</option>      
+            </select>  
+    
+
+            <input type="text" name="Designation" placeholder="Designation">
+            <input type="text" name="Resorce Allocation" placeholder="Resource Allocation">
+                    
+            <input type="submit" value="Submit" class="frame">
+        </form>
+    </div>
+        </div>
+    </div>
+
+<!--
+    
+    entry ::
+    1 - id
+    2- mental fatigue
+    new Entry::
+    1 - id
+    2 - dat of joining
+    3 - gender
+    4 - designation
+    5 - work from ome
+    6 - rsource alocation
+    7 - compony type
+ -->
+
+
+<script>
+    var entry = document.querySelector('.sec1')
+    var tsu = document.querySelector('.middle')
+
+
+    var toast = document.getElementById('toast')
+        var snot = document.getElementById('snot')
+
+        
+    var newEntry = document.querySelector('.sec2')
+    document.getElementById('boii').addEventListener('click',function(){
+        entry.classList.add('dialog')
+        entry.classList.remove('hidden')
+        tsu.classList.remove('dialog')
+        tsu.classList.add('hidden')
+        newEntry.classList.remove('dialog')
+        newEntry.classList.add('hidden')
+
+    })
+    document.getElementById('close').addEventListener('click',function(){
+        entry.classList.remove('dialog')
+        entry.classList.add('hidden')
+        newEntry.classList.remove('dialog')
+        newEntry.classList.add('hidden')
+        tsu.classList.add('dialog')
+        tsu.classList.remove('hidden')
+        console.log('insertingggg')
+    })
+    document.getElementById('close1').addEventListener('click',function(){
+        entry.classList.remove('dialog')
+        entry.classList.add('hidden')
+        newEntry.classList.remove('dialog')
+        newEntry.classList.add('hidden')
+        tsu.classList.add('dialog')
+        tsu.classList.remove('hidden')
+        console.log('insertingggg')
+    })
+    document.getElementById('boii2').addEventListener('click',function(){
+        newEntry.classList.add('dialog')
+        newEntry.classList.remove('hidden')
+        tsu.classList.remove('dialog')
+        tsu.classList.add('hidden')
+        entry.classList.remove('dialog')
+        entry.classList.add('hidden')
+
+    })
+
+
+    // ajex requestssss
+    $(document).ready(function(){
+    var clicked;
+    $("#snot").click(function(){
+        toast.style.transform = 'scale(1)'
+            snot.style.visibility = "hidden"
+            document.querySelector('.container1').style.zIndex = 2
+            document.querySelector('.form').style.display = 'none'
+        clicked = {
+        "Employee Id" : document.getElementById('emp').value,
+        "Mental fatigue" : document.getElementById('men').value
+    };
+    console.log(clicked);
+        $.ajax({
+            type : 'POST',
+            url : "http://localhost:5000/login",
+            dataType: "json",
+            data : clicked,
+            contentType: "application/json",
+            success: function(data) {
+                console.log(data);
+                  $('#Bout').text(data["Burnout rate"])
+               }
+            });
+        });
+    });
+
+     // pop jssss
+
+    
+        // snot.addEventListener('click', function(){
+        //     toast.style.transform = 'scale(1)'
+        //     snot.style.visibility = "hidden"
+        //     document.querySelector('.container1').style.zIndex = 2
+        //     document.querySelector('.form').style.display = 'none'
+        // })
+        document.getElementById('close2').addEventListener('click',function(){
+            toast.style.transform = 'scale(0)'
+            snot.style.visibility = "visible"
+            document.querySelector('.container1').style.zIndex = -1
+            // document.querySelector('.form').style.visibility = 'visible'
+            document.querySelector('.form').style.display = 'flex'
+
+
+
+        })
+</script>
+<script>
+
+</script>
+
+</body>
+</html> 
